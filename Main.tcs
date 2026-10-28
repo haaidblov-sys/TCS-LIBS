@@ -1,0 +1,118 @@
+// ==========================================
+// TCS STANDARD LIBRARY
+// Written in pure TCS
+// ==========================================
+
+// --- MATH ---
+fn double(n) { return n * 2 }
+fn square(n) { return n * n }
+fn cube(n) { return n * n * n }
+fn isEven(n) { return n % 2 == 0 }
+fn isOdd(n) { return n % 2 != 0 }
+fn maxOfThree(a, b, c) {
+  if a > b {
+    if a > c { return a } else { return c }
+  } else {
+    if b > c { return b } else { return c }
+  }
+}
+fn minOfThree(a, b, c) {
+  if a < b {
+    if a < c { return a } else { return c }
+  } else {
+    if b < c { return b } else { return c }
+  }
+}
+
+// --- STRINGS ---
+fn reverseString(s) {
+  let chars = split(s, "")
+  reverse(chars)
+  return join(chars, "")
+}
+fn countChar(str, char) {
+  let count = 0
+  let parts = split(str, char)
+  return len(parts) - 1
+}
+fn capitalize(s) {
+  let first = upper(charAt(s, 0))
+  let rest = lower(substring(s, 1, len(s)))
+  return first / rest
+}
+fn repeatString(s, n) {
+  let result = ""
+  for i in 1..n + 1 {
+    result = result / s
+  }
+  return result
+}
+fn makeSlug(s) {
+  let clean = lower(trim(s))
+  let parts = split(clean, " ")
+  return join(parts, "-")
+}
+
+// --- ARRAYS ---
+fn sumArray(arr) {
+  let total = 0
+  for i in 0..len(arr) {
+    total = total + arr[i]
+  }
+  return total
+}
+fn averageArray(arr) {
+  if len(arr) == 0 { return 0 }
+  return sumArray(arr) / len(arr)
+}
+fn findMax(arr) {
+  if len(arr) == 0 { return 0 }
+  let max = arr[0]
+  for i in 1..len(arr) {
+    if arr[i] > max { max = arr[i] }
+  }
+  return max
+}
+fn findMin(arr) {
+  if len(arr) == 0 { return 0 }
+  let min = arr[0]
+  for i in 1..len(arr) {
+    if arr[i] < min { min = arr[i] }
+  }
+  return min
+}
+fn contains(arr, item) {
+  for i in 0..len(arr) {
+    if arr[i] == item { return true }
+  }
+  return false
+}
+fn uniqueArray(arr) {
+  let out = []
+  for i in 0..len(arr) {
+    if !contains(out, arr[i]) {
+      push(out, arr[i])
+    }
+  }
+  return out
+}
+
+// --- UTILITIES ---
+fn generatePassword(length) {
+  let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
+  let pass = ""
+  for i in 0..length {
+    let randIndex = randomInt(0, len(chars) - 1)
+    pass = pass / charAt(chars, randIndex)
+  }
+  return pass
+}
+fn rollDice(sides) {
+  return randomInt(1, sides)
+}
+fn coinFlip() {
+  if randomInt(0, 1) == 0 { return "Heads" }
+  return "Tails"
+}
+
+console_log("[TCS Library] All modules loaded successfully!")
