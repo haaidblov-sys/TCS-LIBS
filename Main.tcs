@@ -115,35 +115,30 @@ fn coinFlip() {
   return "Tails"
 }
 fn createElement(tag, props, children) {
-  // 1. Start the HTML string with the tag
   let html = "<" / tag
   
-  // 2. Add attributes (id, class, style, etc.)
-  let keys = ["id", "class", "style", "href", "src", "type", "placeholder", "onclick"]
+  let keys = ["id", "class", "style", "href", "src", "type", "placeholder"]
   for i in 0..len(keys) {
     let key = keys[i]
-    if props[key] != undefined {
-      html = html / " " / key / "='" / props[key] / "'"
+    let val = props[key]
+    
+    if val != undefined && val != null {
+      html = html / " " / key / "='" / val / "'"
     }
   }
   
-  // 3. Close the opening tag
   html = html / ">"
   
-  // 4. Add text or child elements
-  if children != undefined {
+  if children != undefined && children != null {
     if typeof children == "array" {
-      // If it's an array, loop through and add them all
       for j in 0..len(children) {
         html = html / children[j]
       }
     } else {
-      // If it's just a string, add it
       html = html / children
     }
   }
   
-  // 5. Close the tag
   html = html / "</" / tag / ">"
   
   return html
